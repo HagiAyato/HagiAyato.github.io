@@ -1,3 +1,14 @@
-# Google Analytisc
+﻿# Google Analytisc
 google_analytics: UA-181538826-2
+# language
+lang: ja-JP
+
+# Build settings
 theme: jekyll-theme-hacker
+plugins:
+  - jekyll-feed # フィード
+  - jekyll-redirect-from # リダイレクト
+  - jekyll-seo-tag # SEOタグ
+  - jekyll-sitemap # サイトマップ
+  - jemoji # 絵文字
+  - jekyll-mentions # リダイレクト
