@@ -43,6 +43,78 @@
 <body>
     <div class="container-fluid">
         <!-- 住所入力欄 -->
+        <h2>１．一番シンプルなフォーム</h2>
+        住所をテキストボックスに入れるだけ<br />
+        問題点：<br />
+        <ul>
+            <li>入力欄・入力欄に入れる文字が長くなる</li>
+            <li>住所は住所でも、何を入れればいいかが分からない</li>
+            <li>住所を空欄にしたまま"決定"される可能性がある</li>
+        </ul>
+        <form id="address1">
+            住所
+            <input type="text" id="ad1_address" />
+            <input type="submit" value="決定" />
+        </form>
+
+        <!-- 住所入力欄2 -->
+        <h2>２．入力欄を分けたフォーム</h2>
+        住所入力欄を細分化<br />
+        解決した問題：<br />
+        <ul>
+            <li>入力欄・入力欄に入れる文字が長くなる</li>
+            <li>住所は住所でも、何を入れればいいかが分からない</li>
+        </ul>
+        新たな問題・未解決の問題：<br />
+        <ul>
+            <li>住所を空欄にしたまま"決定"される可能性がある</li>
+            <li>住所各項目の入力チェックをしていない(郵便番号の桁数・ハイフン、都道府県名・市区町村名)</li>
+        </ul>
+        <form id="address2">
+            <table>
+                <tr>
+                    <td>
+                        郵便番号
+                    </td>
+                    <td>
+                        <input type="text" id="ad2_postalCode" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        都道府県(○○都/道/府/県)
+                    </td>
+                    <td>
+                        <input type="text" id="ad2_pref" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        市区町村(○○市/区/町/村)
+                    </td>
+                    <td>
+                        <input type="text" id="ad2_muni" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        町名
+                    </td>
+                    <td>
+                        <input type="text" id="ad2_town" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        番地以下
+                    </td>
+                    <td>
+                        <input type="text" id="ad2_address" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="決定" />
+        </form>
     </div>
 </body>
 
@@ -53,7 +125,8 @@
                 <h3>リンク</h3>
                 <h4>製作者関係</h4>
                 <a href="https://hagiayato.github.io/my-site/"> 製作者のサイト "HA Works"</a><br />
-                <a href="https://github.com/HagiAyato/HagiAyato.github.io/practice/address"> このページのソースコード(github)</a><br />
+                <a href="https://github.com/HagiAyato/HagiAyato.github.io/practice/address">
+                    このページのソースコード(github)</a><br />
             </div>
         </div>
     </nav>
