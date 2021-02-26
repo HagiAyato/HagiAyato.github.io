@@ -115,6 +115,71 @@
             </table>
             <input type="submit" value="決定" />
         </form>
+
+        <!-- 住所入力欄3 -->
+        <h2>３．入力チェック付きフォーム(HTML5)</h2>
+        HTML5のpattern属性による、入力チェックを実装<br />
+        HTML5非対応環境を考慮する場合、およびエラーメッセージをカスタマイズしたい場合は、JavaScript等でこれ以外の実装方法を採用する必要あり。<br />
+        解決した問題：<br />
+        <ul>
+            <li>住所を空欄にしたまま"決定"される可能性がある</li>
+            <li>住所各項目の入力チェックをしていない(郵便番号の桁数・ハイフン、都道府県名・市区町村名)</li>
+        </ul>
+        新たな問題・未解決の問題：<br />
+        <ul>
+            <li>郵便番号からの住所自動入力機能が欲しい</li>
+        </ul>
+        <form id="address3">
+            <table>
+                <tr>
+                    <td>
+                        郵便番号(半角・ハイフン不要)
+                    </td>
+                    <td>
+                        <!--ハイフンなし数値7桁-->
+                        <input type="text" id="ad3_postalCode" placeholder="1234567" pattern="^\d{7}$" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        都道府県(全角)
+                    </td>
+                    <td>
+                        <!--任意の全角文字2~3文字+都道府県-->
+                        <!--全角=半角英数字及び半角ｶﾀｶﾅ以外-->
+                        <input type="text" id="ad3_pref" placeholder="○○都/道/府/県" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{2,3}[都道府県]$" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        市区町村(全角・群名含む)
+                    </td>
+                    <td>
+                        <!--任意の全角文字1文字以上+市区町村-->
+                        <input type="text" id="ad3_muni" placeholder="○○市/区/町/村" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}[市区町村]$" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        町名(全角)
+                    </td>
+                    <td>
+                        <!--任意の全角1文字以上-->
+                        <input type="text" id="ad3_town" placeholder="○○" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        番地以下(全角)
+                    </td>
+                    <td>
+                        <!--空欄でも可・全角のみ-->
+                        <input type="text" id="ad3_address" placeholder="番地・マンション名" pattern="[^\x01-\x7E]{0,}" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="決定" />
+        </form>
     </div>
 </body>
 
