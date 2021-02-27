@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="style/style.css" />
     <script type="text/javascript" src="script/script.js">
     </script>
-    <title>入れやすい住所入力欄を作りながら考える</title>
+    <title>入れやすい住所入力欄を、欄を作りながら考える</title>
     <meta name="description" content="入れやすい住所入力欄を作りながら考える" />
 </head>
 
@@ -34,7 +34,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <h1>入れやすい住所入力欄を作りながら考える</h1>
+                <h1>入れやすい住所入力欄を、欄を作りながら考える</h1>
             </div>
         </div>
     </nav>
@@ -128,12 +128,15 @@
         新たな問題・未解決の問題：<br />
         <ul>
             <li>郵便番号からの住所自動入力機能が欲しい</li>
+            <li>郵便番号の数字入力を、自動で半角・ハイフン抜きにしたい</li>
+            <li>郵便番号の英数字・片仮名入力を、自動で全角にしたい</li>
         </ul>
         <form id="address3">
             <table>
                 <tr>
                     <td>
-                        郵便番号(半角・ハイフン不要)
+                        郵便番号(半角・ハイフン不要) </td>
+                    <td><span class="badge bg-danger">必須</span>
                     </td>
                     <td>
                         <!--ハイフンなし数値7桁-->
@@ -142,39 +145,120 @@
                 </tr>
                 <tr>
                     <td>
-                        都道府県(全角)
+                        都道府県(全角) </td>
+                    <td><span class="badge bg-danger">必須</span>
                     </td>
                     <td>
                         <!--任意の全角文字2~3文字+都道府県-->
                         <!--全角=半角英数字及び半角ｶﾀｶﾅ以外-->
-                        <input type="text" id="ad3_pref" placeholder="○○都/道/府/県" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{2,3}[都道府県]$" required />
+                        <input type="text" id="ad3_pref" placeholder="○○都/道/府/県"
+                            pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{2,3}[都道府県]$" required />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        市区町村(全角・群名含む)
+                        市区町村(全角・群名含む) </td>
+                    <td><span class="badge bg-danger">必須</span>
                     </td>
                     <td>
                         <!--任意の全角文字1文字以上+市区町村-->
-                        <input type="text" id="ad3_muni" placeholder="○○市/区/町/村" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}[市区町村]$" required />
+                        <input type="text" id="ad3_muni" placeholder="○○市/区/町/村"
+                            pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}[市区町村]$" required />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        町名(全角)
+                        町名(全角) </td>
+                    <td><span class="badge bg-danger">必須</span>
                     </td>
                     <td>
                         <!--任意の全角1文字以上-->
-                        <input type="text" id="ad3_town" placeholder="○○" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}" required />
+                        <input type="text" id="ad3_town" placeholder="○○" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}"
+                            required />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         番地以下(全角)
                     </td>
+                    <td></td>
                     <td>
                         <!--空欄でも可・全角のみ-->
                         <input type="text" id="ad3_address" placeholder="番地・マンション名" pattern="[^\x01-\x7E]{0,}" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="決定" />
+        </form>
+
+        <!-- 住所入力欄4 -->
+        <h2>４．入力補助付きフォーム</h2>
+        AjaxとAPIにより、郵便番号による住所自動入力を実装<br />
+        解決した問題：<br />
+        <ul>
+            <li>郵便番号からの住所自動入力機能が欲しい</li>
+            <li>郵便番号の数字入力を、自動で半角・ハイフン抜きにしたい</li>
+            <li>郵便番号の英数字・片仮名入力を、自動で全角にしたい</li>
+        </ul>
+        <form id="address4">
+            <table>
+                <tr>
+                    <td>
+                        郵便番号(半角・ハイフン不要) </td>
+                    <td><span class="badge bg-danger">必須</span>
+                    </td>
+                    <td>
+                        <!--ハイフンなし数値7桁-->
+                        <input type="text" id="ad4_postalCode" placeholder="1234567" pattern="^\d{7}$" required
+                            onblur="toHalfWidthElm(this);" />
+                        <input type="button" value="住所自動入力" onclick="autoInputAddress();" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        都道府県(全角) </td>
+                    <td><span class="badge bg-danger">必須</span>
+                    </td>
+                    <td>
+                        <!--任意の全角文字2~3文字+都道府県-->
+                        <!--全角=半角英数字及び半角ｶﾀｶﾅ以外-->
+                        <input type="text" id="ad4_pref" placeholder="○○都/道/府/県"
+                            pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{2,3}[都道府県]$" required
+                            onblur="toFullWidthElm(this);" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        市区町村(全角・群名含む) </td>
+                    <td><span class="badge bg-danger">必須</span>
+                    </td>
+                    <td>
+                        <!--任意の全角文字1文字以上+市区町村-->
+                        <input type="text" id="ad4_muni" placeholder="○○市/区/町/村"
+                            pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}[市区町村]$" required
+                            onblur="toFullWidthElm(this);" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        町名(全角) </td>
+                    <td><span class="badge bg-danger">必須</span>
+                    </td>
+                    <td>
+                        <!--任意の全角1文字以上-->
+                        <input type="text" id="ad4_town" placeholder="○○" pattern="^[^(\x01-\x7E|\uFF61-\uFF9F)]{1,}"
+                            required onblur="toFullWidthElm(this);" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        番地以下(全角)
+                    </td>
+                    <td></td>
+                    <td>
+                        <!--空欄でも可・全角のみ-->
+                        <input type="text" id="ad4_address" placeholder="番地・マンション名" pattern="[^\x01-\x7E]{0,}"
+                            onblur="toFullWidthElm(this);" />
                     </td>
                 </tr>
             </table>
