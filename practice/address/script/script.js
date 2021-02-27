@@ -11,7 +11,7 @@ function autoInputAddress() {
 
     // ajaxで住所を調べる
     var param = { zipcode: postalCode }
-    var send_url = "//zipcloud.ibsnet.co.jp/api/search";
+    var send_url = "https//zipcloud.ibsnet.co.jp/api/search";
     $.ajax({
         type: "GET",
         cache: false,
