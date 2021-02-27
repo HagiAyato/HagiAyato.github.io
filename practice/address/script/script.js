@@ -37,7 +37,7 @@ function autoInputAddress() {
         $('#ad4_town').val(result.address3);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         // エラーの場合処理
-        console.error(data.message);
+        console.error("サーバとの通信に失敗しました");
     });
 }
 
