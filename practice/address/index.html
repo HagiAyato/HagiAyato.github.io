@@ -35,6 +35,13 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <h1>入れやすい住所入力欄を、欄を作りながら考える</h1>
+                <b>目次</b>
+                <ul>
+                    <li><a href="#form1_title">１．一番シンプルなフォーム</a></li>
+                    <li><a href="#form2_title">２．入力欄を分けたフォーム</a></li>
+                    <li><a href="#form3_title">３．入力チェック付きフォーム(HTML5)</a></li>
+                    <li><a href="#form4_title">４．入力補助付きフォーム</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -43,7 +50,7 @@
 <body>
     <div class="container-fluid">
         <!-- 住所入力欄 -->
-        <h2>１．一番シンプルなフォーム</h2>
+        <h2 id="form1_title">１．一番シンプルなフォーム</h2>
         住所をテキストボックスに入れるだけ<br />
         問題点：<br />
         <ul>
@@ -58,7 +65,7 @@
         </form>
 
         <!-- 住所入力欄2 -->
-        <h2>２．入力欄を分けたフォーム</h2>
+        <h2 id="form2_title">２．入力欄を分けたフォーム</h2>
         住所入力欄を細分化<br />
         解決した問題：<br />
         <ul>
@@ -117,7 +124,7 @@
         </form>
 
         <!-- 住所入力欄3 -->
-        <h2>３．入力チェック付きフォーム(HTML5)</h2>
+        <h2 id="form3_title">３．入力チェック付きフォーム(HTML5)</h2>
         HTML5のpattern属性による、入力チェックを実装<br />
         HTML5非対応環境を考慮する場合、およびエラーメッセージをカスタマイズしたい場合は、JavaScript等でこれ以外の実装方法を採用する必要あり。<br />
         解決した問題：<br />
@@ -192,7 +199,7 @@
         </form>
 
         <!-- 住所入力欄4 -->
-        <h2>４．入力補助付きフォーム</h2>
+        <h2 id="form4_title">４．入力補助付きフォーム</h2>
         AjaxとAPIにより、郵便番号による住所自動入力を実装<br />
         JavaScriptで、入力補助を実装<br />
         解決した問題：<br />
