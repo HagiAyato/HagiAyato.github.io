@@ -42,6 +42,18 @@
 
 <body>
     <div class="container-fluid">
+        <div class="p-1">
+            <button class="btn" id="BTNReadme" onclick="dispReadme();">説明表示▼</button><br />
+            <div class="border p-3" id="readme" style="display:none">
+                <h3>統合検索ポータルの使い方</h3>
+                <ol>
+                    <li>検索したいワードを"検索ワード："に入力</li>
+                    <li>検索するサイトを"検索サイト："から選択</li>
+                    <li>検索ボタンを押す</li>
+                </ol>
+                <p>"※要事前ログイン"と記載がある検索サイトでの検索には、事前にサイトへのログインが必要です。</p>
+            </div>
+        </div>
         <table>
             <tr>
                 <td>検索ワード：</td>
@@ -50,10 +62,8 @@
             <tr>
                 <td>検索サイト：</td>
                 <td>
-                    <select>
-                        <option value="Google">Google</option>
-                    </select>
-                    <input type="button" value="検索" onclick="search();"/>
+                    <select id="site"></select>
+                    <input type="button" value="検索" onclick="search();" />
                 </td>
             </tr>
         </table>
