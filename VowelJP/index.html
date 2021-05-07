@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- うおおあうあいおあう おおううああいいうう -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-185637831-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-185637831-1');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- ううおうおあっう いいえうえう -->
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<!-- ええうえいい -->
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<!-- ううおうおあっう ああうういうお -->
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="script/vowelJP.js">
+	</script>
+	<link rel="stylesheet" href="style/vowelJP.css" />
+	<title>おいんえんあんい 母音変換機</title>
+	<meta name="description" content="好きな言葉(ひらがな)を入力して、母音変換ボタンを押すと母音だけに変換されるよ!" />
+</head>
+
+<header>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h1>おいんえんあんい 母音変換機</h1>
+				<h4>えうえい</h4>
+				<p>ういあおおあ(いあああ・ああああ)おいういういえ、"おいんえんあん"おあんおおうおおいんあえいえんあんあえうお!</p>
+				<p>【ううい】いあああ・ああああいあいあえんあんいあいお!</p>
+				<h4>日本語訳</h4>
+				<p>好きな言葉(ひらがな・カタカナ)を入力して、"母音変換"ボタンを押すと母音だけに変換されるよ!</p>
+				<p>【注意】ひらがな・カタカナ以外は変換しないよ!</p>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<body>
+	<div class="container-fluid">
+		<form name="code">
+			<h4>おおおおおあ(いあああ・ああああ)-元の言葉(ひらがな・カタカナ)</h4>
+			<textarea id="input" rows="10"></textarea><br />
+			<input type="button" onClick="convertToVowel();" value="おいんえんあん!-母音変換!" />
+			<input type="button" onClick="" value="あうえんあんあえいあいお-逆変換はできないよ" disabled />
+			<h4>おいんえんあんお-母音変換後</h4>
+			<textarea id="output" rows="10"></textarea>
+			<input type="button" onClick="tweet();" value="えんあんおおいえうおういいお-変換後文字列をツイート" />
+		</form>
+	</div>
+</body>
+
+<footer>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-footer">
+				<h3>いんう-リンク</h3>
+				<h4>いっおうあんおう-実装参考</h4>
+				<a
+					href="https://qiita.com/shimajiroxyz/items/6755b211a42b519eb224">ああああああおいんおああいえんあんうう【あいおん】-カタカナから母音のカナに変換する【python】</a>
+				<h4>えいあうああんえい-製作者関係</h4>
+				<a href="https://hagiayato.github.io/my-site/"> えいあうあおあいお "えいいええああうう"-製作者のサイト "HA Works"</a><br />
+				<a href="https://github.com/HagiAyato/HagiAyato.github.io/tree/master/MySearch">
+					おおうえうあういおおおうおおお(いっおあう)-このwebアプリのソースコード(github)</a><br />
+			</div>
+		</div>
+	</nav>
+</footer>
+
+</html>
