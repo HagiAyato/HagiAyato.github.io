@@ -1,0 +1,10 @@
+title: おいんえんあんい 母音変換機
+description: 好きな言葉(ひらがな)を入力して、母音変換ボタンを押すと母音だけに変換されるよ!
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-feed # フィード
+  - jekyll-redirect-from # リダイレクト
+  - jekyll-seo-tag # SEOタグ
+  - jekyll-sitemap # サイトマップ
+  - jemoji # 絵文字
+  - jekyll-mentions # メンション
