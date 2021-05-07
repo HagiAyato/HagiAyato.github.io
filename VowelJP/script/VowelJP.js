@@ -94,3 +94,12 @@ function convertToVowel() {
     // 変換後の文字を出力
     $('#output').val(vowel);
 }
+
+/**
+ * ツイート
+ */
+function tweet(){
+    // 母音取得
+    const vowel = $('#output').val()+' #おいんえんあんい';
+    window.open('http://twitter.com/intent/tweet/?text=' + encodeURIComponent(vowel.substring(0, 600)) + '&url=' + encodeURIComponent("https://HagiAyato.github.io/VowelJP/"));
+}
