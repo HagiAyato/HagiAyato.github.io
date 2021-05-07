@@ -100,6 +100,6 @@ function convertToVowel() {
  */
 function tweet(){
     // 母音取得
-    const vowel = $('#output').val()+' #おいんえんあんい';
+    const vowel = $('#output').val()+' #母音変換機';
     window.open('http://twitter.com/intent/tweet/?text=' + encodeURIComponent(vowel.substring(0, 600)) + '&url=' + encodeURIComponent("https://HagiAyato.github.io/VowelJP/"));
 }
