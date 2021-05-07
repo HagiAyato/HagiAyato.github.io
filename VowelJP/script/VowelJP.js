@@ -26,13 +26,48 @@ const smallToLarge = {
 }
 
 /**
+ * 片仮名⇒平仮名変換
+ * @param {string} str 変換したい文字列
+ * @returns 変換後文字列
+ */
+function kanaToHira(str) {
+    //"/[\u30a1-\u30f6]/g"：任意の片仮名　これを無名関数で平仮名化
+    return str.replace(/[\u30a1-\u30f6]/g,
+        /**
+         * 片仮名⇒平仮名変換用無名関数
+         * @param {string} match 変換対象の片仮名一文字
+         * @returns 変換後の平仮名
+         */
+        function (match) {
+            // 平仮名の文字コード = 片仮名の文字コード - 0x60
+            var chr = match.charCodeAt(0) - 0x60;
+            return String.fromCharCode(chr);
+        });
+}
+
+/**
+ * 変換辞書に従って文字列を変換
+ * @param {string} str 変換したい文字列
+ * @param {dictionaly} dictionaly 変換辞書
+ * @returns 変換後文字列
+ */
+function convertDict(str, dictionaly) {
+    let convertedArray = new Array();
+    for (let index in str.split('')) {
+        let c = dictionaly[str[index]];
+        convertedArray.push(c != undefined ? c : str[index]);
+    }
+    return convertedArray.join('');
+}
+
+/**
  * 日本語平仮名⇒母音
  */
 function convertToVowel() {
     // 原文取得
     const jp = $('#input').val();
-    // 変換後の文字
-    let vowel = jp;
+    // 変換後の文字・片仮名⇒平仮名変換
+    let vowel = kanaToHira(jp);
 
     // と/ど+'ぅ'をうに変換
     vowel = vowel.replace(/[とど]ぅ/g, "う")
@@ -40,12 +75,7 @@ function convertToVowel() {
         .replace(/[てで]ぃ/g, "い").replace(/[てで]ゅ/g, "う");
 
     // 大文字+ぅを変換
-    let convertedArray = new Array();
-    for (let index in vowel.split('')) {
-        let c = jpToVovel[vowel[index]];
-        convertedArray.push(c != undefined ? c : vowel[index]);
-    }
-    vowel = convertedArray.join('');
+    vowel = convertDict(vowel, jpToVovel);
 
     // うーをううに変換
     vowel = vowel.replace(/うー/g, "うう")
@@ -57,12 +87,7 @@ function convertToVowel() {
         .replace(/[いぃ]ゃ/g, "あ").replace(/[いぃ]ゅ/g, "う").replace(/[いぃ]ぇ/g, "え").replace(/[いぃ]ょ/g, "お")
 
     // 小さい文字を大きい文字に変換
-    convertedArray = new Array();
-    for (let index in vowel.split('')) {
-        let c = smallToLarge[vowel[index]];
-        convertedArray.push(c != undefined ? c : vowel[index]);
-    }
-    vowel = convertedArray.join('');
+    vowel = convertDict(vowel, smallToLarge);
 
     // 伸ばし棒対応
     vowel = vowel.replace(/あー/g, "ああ").replace(/いー/g, "いい").replace(/うー/g, "うう").replace(/えー/g, "ええ").replace(/おー/g, "おお")
