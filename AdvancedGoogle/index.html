@@ -35,6 +35,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <h1>高度なGoogle検索</h1>
+                <p>Internet Explorer非対応です。</p>
             </div>
         </div>
     </nav>
@@ -55,21 +56,54 @@
         </div>
         <table>
             <tr>
-                <td>検索ワード：</td>
+                <td>検索ワード</td>
+                <td>：</td>
                 <td><input type="text" id="word" placeholder="search word" /></td>
             </tr>
             <tr>
-                <td>条件挿入：</td>
+                <td>条件挿入</td>
+                <td>：</td>
                 <td>
                     <input type="button" value="完全一致検索" onclick='addQuery("\"(条件を入力)\"");' />
                     <input type="button" value="AND条件" onclick="addQuery(' (AND条件を入力)');" />
                     <input type="button" value="OR条件" onclick="addQuery(' OR (OR条件を入力)');" />
                     <input type="button" value="除外(NOT)条件" onclick="addQuery(' -(除外条件を入力)');" />
+                    <input type="button" value="任意の文字列" onclick="addQuery('*');" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="検索" onclick="search();" />
+                    <input type="checkbox" id="chk_before" onclick="changeEnable('before', this.checked)" />期間指定(指定日以前)
+                </td>
+                </td>
+                <td></td>
+                <td>
+                    <input type="date" id="before" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_after" onclick="changeEnable('after', this.checked)" />期間指定(指定日以降)
+                </td>
+                </td>
+                <td></td>
+                <td>
+                    <input type="date" id="after" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_site" onclick="changeEnable('site', this.checked)" />対象サイト指定
+                </td>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="site" disabled />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="btn btn-primary btn-lg" value="検索" onclick="search();" />
                 </td>
             </tr>
         </table>
