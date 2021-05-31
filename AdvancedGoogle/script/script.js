@@ -90,7 +90,7 @@ function search() {
     const from = $("#number_from").val();
     const to = $("#number_to").val();
     if (0 < from.length && 0 < to.length && $("#chk_number").prop("checked")) {
-        query += (" " + from + ".." + to);
+        query += (" " + from + ".." + to + " " + $("#unit").val());
     }
     // テキスト指定
     let text;
