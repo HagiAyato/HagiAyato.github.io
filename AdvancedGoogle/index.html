@@ -73,8 +73,23 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="chk_before" onclick="changeEnable('before', this.checked)" />期間指定(指定日以前)
+                    <label>対象範囲</label>
                 </td>
+                <td></td>
+                <td>
+                    <select id="scope">
+                        <option value="">ページ全体</option>
+                        <option value="allintitle:">ページタイトルのみ</option>
+                        <option value="allintext:">ページ本文のみ</option>
+                        <option value="allinurl:">ページURLのみ</option>
+                        <option value="allinanchor:">ページへのリンク内</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_before"
+                        onclick="changeEnable(this.checked, 'before')" /><label>期間指定(指定日以前)</label>
                 </td>
                 <td></td>
                 <td>
@@ -83,8 +98,8 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="chk_after" onclick="changeEnable('after', this.checked)" />期間指定(指定日以降)
-                </td>
+                    <input type="checkbox" id="chk_after"
+                        onclick="changeEnable(this.checked, 'after')" /><label>期間指定(指定日以降)</label>
                 </td>
                 <td></td>
                 <td>
@@ -93,8 +108,20 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="chk_site" onclick="changeEnable('site', this.checked)" />対象サイト指定
+                    <input type="checkbox" id="chk_number"
+                        onclick="changeEnable(this.checked, 'number_from', 'number_to')" /><label>数値範囲指定</label>
                 </td>
+                <td></td>
+                <td>
+                    <input type="number" id="number_from" disabled />
+                    <label>～</label>
+                    <input type="number" id="number_to" disabled />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_site"
+                        onclick="changeEnable(this.checked, 'site')" /><label>対象サイト/ドメイン指定</label>
                 </td>
                 <td></td>
                 <td>
@@ -103,8 +130,8 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="chk_sns" onclick="changeEnable('sns', this.checked)" />対象SNS指定
-                </td>
+                    <input type="checkbox" id="chk_sns"
+                        onclick="changeEnable(this.checked, 'sns')" /><label>対象SNS指定</label>
                 </td>
                 <td></td>
                 <td>
@@ -113,8 +140,8 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="chk_location" onclick="changeEnable('location', this.checked)" />対象ロケーション指定
-                </td>
+                    <input type="checkbox" id="chk_location"
+                        onclick="changeEnable(this.checked, 'location')" /><label>対象ロケーション指定</label>
                 </td>
                 <td></td>
                 <td>
@@ -123,11 +150,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="chk_filetype" onclick="changeEnable('filetype', this.checked)" />ファイル拡張子指定
-                </td>
+                    <input type="checkbox" id="chk_filetype"
+                        onclick="changeEnable(this.checked, 'filetype')" /><label>ファイル拡張子指定</label>
                 </td>
                 <td></td>
                 <td>
+                    <label>.</label>
                     <input type="text" id="filetype" disabled />
                 </td>
             </tr>

@@ -62,48 +62,56 @@ function addQuery(query) {
 
 /**
  * チェックボックスと対応する要素の有効無効切替
- * @param {string} target 
  * @param {boolean} isChecked 
+ * @param  {...string} target 
  */
-function changeEnable(target, isChecked) {
-    $("#" + target).prop("disabled", !isChecked);
+function changeEnable(isChecked, ...target) {
+    target.forEach(
+        function (item, index) {
+        $("#" + item).prop("disabled", !isChecked);
+    });
 }
 
 /**
  * 検索処理本体
  */
 function search() {
-    const word = $("#word").val();
-    // 検索ワード空欄の場合は処理中止
-    if (word.length < 1) return;
-    let query = urls["Google"] + word;
+    let query = $("#scope").val() + $("#word").val();
     // 日付指定
     const before = $("#before").val();
-    if (0 < before.length && $("#chk_before").prop("checked")){
+    if (0 < before.length && $("#chk_before").prop("checked")) {
         query += (" before:" + before);
     }
     const after = $("#after").val();
-    if (0 < after.length && $("#chk_after").prop("checked")){
+    if (0 < after.length && $("#chk_after").prop("checked")) {
         query += (" after:" + after);
+    }
+    // 数値範囲指定
+    const from = $("#number_from").val();
+    const to = $("#number_to").val();
+    if (0 < from.length && 0 < to.length && $("#chk_number").prop("checked")) {
+        query += (" " + from + ".." +to);
     }
     // テキスト指定
     let text;
     text = $("#site").val();
-    if (0 < text.length && $("#chk_site").prop("checked")){
+    if (0 < text.length && $("#chk_site").prop("checked")) {
         query += (" site:" + text);
     }
     text = $("#sns").val();
-    if (0 < text.length && $("#chk_sns").prop("checked")){
+    if (0 < text.length && $("#chk_sns").prop("checked")) {
         query += (" @" + text);
     }
     text = $("#location").val();
-    if (0 < text.length && $("#chk_location").prop("checked")){
+    if (0 < text.length && $("#chk_location").prop("checked")) {
         query += (" location:" + text);
     }
     text = $("#filetype").val();
-    if (0 < text.length && $("#chk_filetype").prop("checked")){
+    if (0 < text.length && $("#chk_filetype").prop("checked")) {
         query += (" filetype:" + text);
     }
+    // 検索ワード空欄の場合は処理中止
+    if (query.length < 1) return;
     // 新しいタブを開き、ページを表示
-    window.open(query, "_blank");
+    window.open(urls["Google"] + query, "_blank");
 }
