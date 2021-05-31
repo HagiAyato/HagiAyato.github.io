@@ -61,7 +61,7 @@
                 <td><input type="text" id="word" placeholder="search word" /></td>
             </tr>
             <tr>
-                <td>条件挿入</td>
+                <td>条件追加</td>
                 <td>：</td>
                 <td>
                     <input type="button" value="完全一致検索" onclick='addQuery("\"(条件を入力)\"");' />
@@ -99,6 +99,36 @@
                 <td></td>
                 <td>
                     <input type="text" id="site" disabled />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_sns" onclick="changeEnable('sns', this.checked)" />対象SNS指定
+                </td>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="sns" disabled />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_location" onclick="changeEnable('location', this.checked)" />対象ロケーション指定
+                </td>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="location" disabled />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chk_filetype" onclick="changeEnable('filetype', this.checked)" />ファイル拡張子指定
+                </td>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="filetype" disabled />
                 </td>
             </tr>
             <tr>

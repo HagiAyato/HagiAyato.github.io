@@ -87,9 +87,22 @@ function search() {
         query += (" after:" + after);
     }
     // テキスト指定
-    const url = $("#site").val();
-    if (0 < url.length && $("#chk_site").prop("checked")){
-        query += (" site:" + url);
+    let text;
+    text = $("#site").val();
+    if (0 < text.length && $("#chk_site").prop("checked")){
+        query += (" site:" + text);
+    }
+    text = $("#sns").val();
+    if (0 < text.length && $("#chk_sns").prop("checked")){
+        query += (" @" + text);
+    }
+    text = $("#location").val();
+    if (0 < text.length && $("#chk_location").prop("checked")){
+        query += (" location:" + text);
+    }
+    text = $("#filetype").val();
+    if (0 < text.length && $("#chk_filetype").prop("checked")){
+        query += (" filetype:" + text);
     }
     // 新しいタブを開き、ページを表示
     window.open(query, "_blank");
