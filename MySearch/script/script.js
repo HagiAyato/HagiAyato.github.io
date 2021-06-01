@@ -9,8 +9,8 @@ var showReadme_flg = false;
  */
 const urls = {
     "Google": "https://www.google.com/search?q=",
-    "Yahoo": "https://search.yahoo.co.jp/search?p=",
-    "bing": "https://www.bing.com/search?q=",
+    "YAHOO! JAPAN": "https://search.yahoo.co.jp/search?p=",
+    "Bing": "https://www.bing.com/search?q=",
     "wikipedia": "https://ja.wikipedia.org/w/index.php?search=",
     "Youtube": "https://www.youtube.com/results?search_query=",
     "niconico": "https://www.nicovideo.jp/search/",

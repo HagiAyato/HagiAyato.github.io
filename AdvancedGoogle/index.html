@@ -26,16 +26,17 @@
     <link rel="stylesheet" href="style/style.css" />
     <script type="text/javascript" src="script/script.js">
     </script>
-    <title>高度なGoogle検索</title>
-    <meta name="description" content="Google検索で使用できる高度な検索機能を、簡単に使用できるページ。現状は、特によくつかわれるOR,AND,完全一致,除外の各条件を試すことができます。" />
+    <title>高度な検索</title>
+    <meta name="description"
+        content="Google/Yahoo! JAPAN/Bing検索で使用できる高度な検索機能を、簡単に使用できるページ。現状は、特によくつかわれるOR,AND,完全一致,除外の各条件を試すことができます。" />
 </head>
 
 <header>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <h1>高度なGoogle検索</h1>
-                <p>Internet Explorer非対応です。</p>
+                <h1>高度な検索</h1>
+                <p>※Internet Explorer非対応です。</p>
             </div>
         </div>
     </nav>
@@ -48,6 +49,7 @@
             <div class="border p-3" id="readme" style="display:none">
                 <h3>高度なGoogle検索の使い方</h3>
                 <ol>
+                    <li>検索するサイトを"検索サイト："から選択</li>
                     <li>検索したいワードを"検索ワード："に入力</li>
                     <li>条件を設定する場合は、"条件挿入："のボタンを押して、条件文を挿入<br />カッコ内を条件文に置き換え</li>
                     <li>検索対象範囲を選択</li>
@@ -57,6 +59,13 @@
             </div>
         </div>
         <table>
+            <tr>
+                <td>検索サイト</td>
+                <td>：</td>
+                <td>
+                    <select id="service" class="form-select"></select>
+                </td>
+            </tr>
             <tr>
                 <td>検索ワード</td>
                 <td>：</td>
