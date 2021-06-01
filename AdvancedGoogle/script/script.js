@@ -76,7 +76,7 @@ function changeEnable(isChecked, ...target) {
  * 検索処理本体
  */
 function search() {
-    let query = $("#scope").val() + $("#word").val();
+    let query = $("#word").val();
     // 日付指定
     const before = $("#before").val();
     if (0 < before.length && $("#chk_before").prop("checked")) {
@@ -113,5 +113,5 @@ function search() {
     // 検索ワード空欄の場合は処理中止
     if (query.length < 1) return;
     // 新しいタブを開き、ページを表示
-    window.open(urls["Google"] + query, "_blank");
+    window.open(urls["Google"] + $("#scope").val() + query, "_blank");
 }
