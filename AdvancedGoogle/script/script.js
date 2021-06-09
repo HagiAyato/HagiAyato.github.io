@@ -56,14 +56,14 @@ function addQuery(query) {
 }
 
 /**
- * チェックボックスと対応する要素の有効無効切替
- * @param {boolean} isChecked 
- * @param  {...string} target 
+ * 要素の有効無効切替
+ * @param {boolean} isEnable 有効無効
+ * @param  {...string} target 対象要素(複数指定可能)
  */
-function changeEnable(isChecked, ...target) {
+function changeEnable(isEnable, ...target) {
     target.forEach(
         function (item, index) {
-            $("#" + item).prop("disabled", !isChecked);
+            $("#" + item).prop("disabled", !isEnable);
         });
 }
 
