@@ -77,7 +77,7 @@ function convertToVowel() {
         str = converted;
     }).catch(error => {
         // 通信失敗
-        alert('エラーが発生しました：' + error);
+        alert('エラーが発生しました：' + error + '\n平仮名、片仮名以外の母音変換を省略します。');
         str = jp;
     }).finally(v => {
         // 変換後の文字・片仮名⇒平仮名変換
