@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- うおおあうあいおあう おおううああいいうう -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-185637831-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-185637831-1');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="script/script.js">
+	</script>
+	<link rel="stylesheet" href="style/style.css" />
+	<title>車いすラグビーのポイントシステム</title>
+	<meta name="description" content="車いすラグビーに存在する、ポイントシステムを確認できるサイトです。" />
+</head>
+
+<header>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h1>車いすラグビーのポイントシステム</h1>
+				<h4>説明</h4>
+				<p>車いすラグビーに存在する、ポイントシステムを確認できるサイトです。</p>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<body>
+	<div class="container-fluid">
+		<form name="code">
+			<h4>メンバー設定</h4>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>ポイント</th>
+					<th>性別</th>
+				</tr>
+				<tr>
+					<th>1人目</th>
+					<td>
+						<select name="point0" class="form-select" onchange="onChangePoint('0');">
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+							<option value="2.5">2.5</option>
+							<option value="3.0">3.0</option>
+							<option value="3.5">3.5</option>
+						</select>
+					</td>
+					<td>
+						<select name="gender0" class="form-select" onchange="onChangeGender('0');">
+							<option value="male">男性</option>
+							<option value="female">女性</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>2人目</th>
+					<td>
+						<select name="point1" class="form-select" onchange="onChangePoint('1');">
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+							<option value="2.5">2.5</option>
+							<option value="3.0">3.0</option>
+							<option value="3.5">3.5</option>
+						</select>
+					</td>
+					<td>
+						<select name="gender1" class="form-select" onchange="onChangeGender('1');">
+							<option value="male">男性</option>
+							<option value="female">女性</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>3人目</th>
+					<td>
+						<select name="point2" class="form-select" onchange="onChangePoint('2');">
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+							<option value="2.5">2.5</option>
+							<option value="3.0">3.0</option>
+							<option value="3.5">3.5</option>
+						</select>
+					</td>
+					<td>
+						<select name="gender2" class="form-select" onchange="onChangeGender('2');">
+							<option value="male">男性</option>
+							<option value="female">女性</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>4人目</th>
+					<td>
+						<select name="point3" class="form-select" onchange="onChangePoint();">
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+							<option value="2.5">2.5</option>
+							<option value="3.0">3.0</option>
+							<option value="3.5">3.5</option>
+						</select>
+					</td>
+					<td>
+						<select name="gender3" class="form-select" onchange="onChangeGender();">
+							<option value="male">男性</option>
+							<option value="female">女性</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<h4>ポイント</h4>
+			<p>上限ポイント：<span id="max"></span>ポイント</p>
+			<p>メンバーの合計ポイント：<span id="sum"></span>ポイント</p>
+			<p>残り使用可能ポイント：<span id="remain"></span>ポイント</p>
+			<p id="judge">ルール遵守</p>
+		</form>
+	</div>
+</body>
+
+<footer>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-footer">
+				<h3>リンク</h3>
+				<h4>実装参考</h4>
+				
+				<h4>製作者関係</h4>
+				<a href="https://hagiayato.github.io/my-site/">製作者のサイト "HA Works"</a><br />
+				<a href="https://github.com/HagiAyato/HagiAyato.github.io/tree/master/WheelChairRugbyPoint">
+					このwebアプリのソースコード(github)</a><br />
+			</div>
+		</div>
+	</nav>
+</footer>
+
+</html>
