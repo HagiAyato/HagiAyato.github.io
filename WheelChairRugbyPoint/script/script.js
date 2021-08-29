@@ -68,7 +68,9 @@ function excecuteDiff() {
     $("#remain").text(diff);
     if (0 <= diff) {
         $("#judge").text("ルール遵守");
+        $("#judge").attr("class","ok");
     } else {
         $("#judge").text("ルール違反");
+        $("#judge").attr("class","ng");
     }
 }
