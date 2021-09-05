@@ -1,9 +1,11 @@
 // 設定値
 let pointArray = [0.5, 0.5, 0.5, 0.5];
+let pointArrayB = [1.0, 1.0, 1.0, 1.0];
 let genderArray = [true, true, true, true];
 // 計算値
 let sum = 0.0;
 let max = 8.0;
+let maxB = 14.0;
 
 /**
  * ページ表示時処理
@@ -13,6 +15,10 @@ window.onload = function () {
     calcPoint();
     calcMax();
     excecuteDiff();
+    // 最初の計算(バスケ用)
+    calcPointB();
+    $("#maxB").text(maxB);
+    excecuteDiffB();
 }
 
 /**
@@ -28,6 +34,18 @@ function onChangePoint(num) {
 }
 
 /**
+ * ポイントを変更した際の処理(バスケ用)
+ */
+ function onChangePointB(num) {
+    // ポイントを取り込む
+    pointArrayB[num] = parseFloat($("[name=point" + num + "B]").val());
+    // ポイント再計算
+    calcPointB();
+    // 差分等表示
+    excecuteDiffB();
+}
+
+/**
  * ポイント計算
  */
 function calcPoint() {
@@ -36,6 +54,17 @@ function calcPoint() {
         sum += point;
     });
     $("#sum").text(sum);
+}
+
+/**
+ * ポイント計算(バスケ用)
+ */
+ function calcPointB() {
+    sumB = 0.0;
+    pointArrayB.forEach(function (point) {
+        sumB += point;
+    });
+    $("#sumB").text(sumB);
 }
 
 /**
@@ -60,6 +89,7 @@ function calcMax(){
     });
     $("#max").text(max);
 }
+
 /**
  * 差分等計算・表示
  */
@@ -72,5 +102,20 @@ function excecuteDiff() {
     } else {
         $("#judge").text("ルール違反");
         $("#judge").attr("class","ng");
+    }
+}
+
+/**
+ * 差分等計算・表示
+ */
+function excecuteDiffB() {
+    let diff = maxB - sumB;
+    $("#remainB").text(diff);
+    if (0 <= diff) {
+        $("#judgeB").text("ルール遵守");
+        $("#judgeB").attr("class","ok");
+    } else {
+        $("#judgeB").text("ルール違反");
+        $("#judgeB").attr("class","ng");
     }
 }
