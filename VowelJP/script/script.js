@@ -126,34 +126,60 @@ function tweet() {
  */
 var promiseSparqlRequest = function (str) {
     return new Promise(function (resolve, reject) {
-        // 引数JSONを作る
-        // HTTPリクエスト
-        const request = new XMLHttpRequest();
-        request.open("POST", "https://labs.goo.ne.jp/api/hiragana");
-        // 通信実行
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({ app_id: "0fa9354fce3e6c8275dcd069bb71493645d2a13d78c30acd275fe180e938ad26", sentence: str, output_type: "hiragana" }));
-        // 通信成功
-        request.addEventListener("load", (e) => {
-            // サーバでの処理失敗判定
-            if (e.target.status != 200) {
-                console.log('[' + e.target.status + ']' + e.target.statusText);
-                reject("平仮名変換に失敗しました。[" + e.target.status + '] Error');
-                return null;
+        // kuromoji を使って漢字の読み（カタカナ）を取得する
+        // kuromoji.js を CDN から動的に読み込み、辞書は jsDelivr のパスを指定
+        function buildTokenizerAndTokenize() {
+            try {
+                kuromoji.builder({ dicPath: 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/' }).build(function (err, tokenizer) {
+                    if (err || !tokenizer) {
+                        console.log('kuromoji build error', err);
+                        resolve(str);
+                        return;
+                    }
+                    try {
+                        var tokens = tokenizer.tokenize(str);
+                        // convert each token to reading; fall back to kana->hiragana if possible
+                        var parts = tokens.map(function (t) {
+                            if (t.reading && t.reading !== '*') return t.reading;
+                            if (t.pronunciation && t.pronunciation !== '*') return t.pronunciation;
+                            // try converting katakana to hiragana (surface form may be kana)
+                            var hira = kanaToHira(t.surface_form);
+                            if (hira !== t.surface_form) {
+                                console.warn('kuromoji: missing reading, used kana->hira', t.surface_form, t);
+                                return hira;
+                            }
+                            // still no reading (likely kanji or symbol)
+                            console.warn('kuromoji: missing reading for token', t.surface_form, t);
+                            return t.surface_form; // fallback
+                        });
+                        var reading = parts.join('');
+                        resolve(reading);
+                    } catch (e) {
+                        console.log('tokenize error', e);
+                        resolve(str);
+                    }
+                });
+            } catch (e) {
+                console.log('kuromoji unexpected error', e);
+                resolve(str);
             }
-            resolve(JSON.parse(e.target.responseText)["converted"]);
-        });
-        // 通信失敗
-        request.addEventListener("error", () => {
-            console.log("Http Request Error");
-            reject("通信に失敗しました。");
-            return null;
-        });
-        // 通信失敗
-        request.addEventListener("timeout", () => {
-            console.log("Http Request Timeout");
-            reject("通信がタイムアウトしました。");
-            return null;
-        });
+        }
+
+        if (typeof kuromoji === 'undefined') {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js';
+            script.onload = function () {
+                console.log('kuromoji library loaded');
+                buildTokenizerAndTokenize();
+            };
+            script.onerror = function () {
+                console.log('Failed to load kuromoji.js from CDN');
+                resolve(str);
+            };
+            document.head.appendChild(script);
+        } else {
+            console.log('kuromoji already present');
+            buildTokenizerAndTokenize();
+        }
     });
 }
