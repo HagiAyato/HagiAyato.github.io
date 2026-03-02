@@ -166,6 +166,25 @@ var promiseSparqlRequest = function (str) {
         }
 
         if (typeof kuromoji === 'undefined') {
+            // Patch XHR.open temporarily to fix kuromoji's dicPath join bug
+            var _origXHROpen = XMLHttpRequest.prototype.open;
+            var _patched = false;
+            XMLHttpRequest.prototype.open = function (method, url) {
+                try {
+                    if (typeof url === 'string' && !/^https?:\/\//i.test(url)) {
+                        // handle cases like 'cdn.jsdelivr.net/...' or '/cdn.jsdelivr.net/...'
+                        var m = url.match(/^(\/)?(cdn\.jsdelivr\.net\/.*)/i);
+                        if (m) {
+                            url = 'https://' + m[2];
+                        }
+                    }
+                } catch (e) {
+                    // ignore
+                }
+                _patched = true;
+                return _origXHROpen.apply(this, arguments);
+            };
+
             var script = document.createElement('script');
             script.src = 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js';
             script.onload = function () {
@@ -174,9 +193,18 @@ var promiseSparqlRequest = function (str) {
             };
             script.onerror = function () {
                 console.log('Failed to load kuromoji.js from CDN');
+                // restore original XHR.open
+                if (_patched) XMLHttpRequest.prototype.open = _origXHROpen;
                 resolve(str);
             };
             document.head.appendChild(script);
+
+            // restore original once tokenizer built (inside buildTokenizerAndTokenize)
+            var _originalResolve = resolve;
+            resolve = function (val) {
+                try { if (_patched) XMLHttpRequest.prototype.open = _origXHROpen; } catch (e) {}
+                _originalResolve(val);
+            };
         } else {
             console.log('kuromoji already present');
             buildTokenizerAndTokenize();
